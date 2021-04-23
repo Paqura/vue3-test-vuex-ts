@@ -1,14 +1,16 @@
 import { defineComponent, ref } from "vue";
 import { useStore } from "./store";
+import { MutationTypes } from "./store/mutation-types";
 
 export default defineComponent({
   name: "App",
 
   setup() {
     const store = useStore()
-    const state = ref(0);
 
-    const increment = () => state.value++;
+    const increment = () => {
+      store.commit(MutationTypes.SET_COUNTER, store.state.counter + 1)
+    }
 
     return () => (
       <div>
